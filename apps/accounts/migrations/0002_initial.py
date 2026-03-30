@@ -6,38 +6,62 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('accounts', '0001_initial'),
-        ('courses', '0001_initial'),
+        ("accounts", "0001_initial"),
+        ("courses", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='usercertificate',
-            name='course',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='certificates', to='courses.course', verbose_name='course'),
+            model_name="usercertificate",
+            name="course",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="certificates",
+                to="courses.course",
+                verbose_name="course",
+            ),
         ),
         migrations.AddField(
-            model_name='usercertificate',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='certificates', to=settings.AUTH_USER_MODEL, verbose_name='user'),
+            model_name="usercertificate",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="certificates",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="user",
+            ),
         ),
         migrations.AddField(
-            model_name='usereducation',
-            name='education',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_educations', to='accounts.education', verbose_name='education'),
+            model_name="usereducation",
+            name="education",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="user_educations",
+                to="accounts.education",
+                verbose_name="education",
+            ),
         ),
         migrations.AddField(
-            model_name='usereducation',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='educations', to=settings.AUTH_USER_MODEL, verbose_name='user'),
+            model_name="usereducation",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="educations",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="user",
+            ),
         ),
         migrations.AddField(
-            model_name='userexperience',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='experiences', to=settings.AUTH_USER_MODEL, verbose_name='user'),
+            model_name="userexperience",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="experiences",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="user",
+            ),
         ),
     ]

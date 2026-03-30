@@ -1,33 +1,9 @@
 from .views import (
-    CountryListCreateAPIView,
-    CountryRetrieveUpdateDestroyAPIView,
-    RegionListCreateAPIView,
-    RegionRetrieveUpdateDestroyAPIView,
     EducationListCreateAPIView,
     EducationRetrieveUpdateDestroyAPIView,
-    AuthorListCreateAPIView,
-    AuthorRetrieveUpdateDestroyAPIView,
-    CategoryListCreateAPIView,
-    CategoryRetrieveUpdateDestroyAPIView,
-    TagListCreateAPIView,
-    TagRetrieveUpdateDestroyAPIView,
-    CourseListCreateAPIView,
-    CourseRetrieveUpdateDestroyAPIView,
 )
 
 __all__ = [
-    "CountryListCreateAPIView",
-    "CountryRetrieveUpdateDestroyAPIView",
-    "RegionListCreateAPIView",
-    "RegionRetrieveUpdateDestroyAPIView",
     "EducationListCreateAPIView",
     "EducationRetrieveUpdateDestroyAPIView",
-    "AuthorListCreateAPIView",
-    "AuthorRetrieveUpdateDestroyAPIView",
-    "CategoryListCreateAPIView",
-    "CategoryRetrieveUpdateDestroyAPIView",
-    "TagListCreateAPIView",
-    "TagRetrieveUpdateDestroyAPIView",
-    "CourseListCreateAPIView",
-    "CourseRetrieveUpdateDestroyAPIView",
 ]
