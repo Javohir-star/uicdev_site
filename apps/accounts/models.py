@@ -10,12 +10,7 @@ from apps.common.models import BaseModel
 
 
 class User(AbstractBaseUser, PermissionsMixin, BaseModel):
-    phone = models.CharField(
-        _("phone"),
-        max_length=20,
-        unique=True,
-        validators=[RegexValidator(r"^\+?1?\d{9,15}$")],
-    )
+    phone = models.CharField(_("phone"), max_length=20, unique=True, validators=[RegexValidator(r"^\+?1?\d{9,15}$")])
     first_name = models.CharField(_("first name"), max_length=150, blank=True)
     last_name = models.CharField(_("last name"), max_length=150, blank=True)
     avatar = models.ForeignKey(
@@ -163,35 +158,22 @@ class UserCertificate(BaseModel):
 
 
 class Author(BaseModel):
-    full_name = models.CharField(_("full name"), max_length=100)
-    age = models.IntegerField(_("age"), default=None)
-    gender = models.CharField(_("gender"), max_length=100)
+    first_name = models.CharField(_("first name"), max_length=150)
+    last_name = models.CharField(_("last name"), max_length=150)
+    description = models.TextField(_("description"), blank=True)
+    avatar = models.ForeignKey(
+        "common.Media",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="author_avatars",
+        verbose_name=_("avatar"),
+    )
+    experience_years = models.PositiveIntegerField(_("experience years"), default=0)
 
     class Meta:
         verbose_name = _("author")
         verbose_name_plural = _("authors")
 
     def __str__(self):
-        return self.first_name, self.last_name, self.age, self.gender
-
-
-class Country(BaseModel):
-    name = models.CharField(_("name"), max_length=100)
-
-    class Meta:
-        verbose_name = _("country")
-        verbose_name_plural = _("countries")
-
-    def __str__(self):
-        return self.name
-
-
-class Region(BaseModel):
-    name = models.CharField(_("name"), max_length=100)
-
-    class Meta:
-        verbose_name = _("region")
-        verbose_name_plural = _("regions")
-
-    def __str__(self):
-        return self.name
+        return f"{self.first_name} {self.last_name}"

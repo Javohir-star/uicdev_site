@@ -1,41 +1,33 @@
 from django.urls import path
 
-from apps.accounts.apis.views import (
-    AuthorListCreateAPIView,
-    AuthorRetrieveUpdateDestroyAPIView,
-    CountryListCreateAPIView,
-    CountryRetrieveUpdateDestroyAPIView,
-    RegionListCreateAPIView,
-    RegionRetrieveUpdateDestroyAPIView,
+from apps.accounts.views import (
+    AuthorCreateAPIView,
+    AuthorDeleteAPIView,
+    AuthorDetailAPIView,
+    AuthorListAPIView,
+    AuthorUpdateAPIView,
+    EducationCreateAPIView,
+    EducationDeleteAPIView,
+    EducationDetailAPIView,
+    EducationListAPIView,
+    EducationUpdateAPIView,
     UserProfileAPIView,
     UserRegisterAPIView,
+    UserRegisterConfirmAPIView,
 )
 
 urlpatterns = [
     path("accounts/register/", UserRegisterAPIView.as_view(), name="register"),
+    path("accounts/register/confirm/", UserRegisterConfirmAPIView.as_view(), name="register-confirm"),
     path("profile/", UserProfileAPIView.as_view(), name="profile"),
-    path(
-        "author/listcreate", AuthorListCreateAPIView.as_view(), name="author-listcreate"
-    ),
-    path(
-        "author/retriveupdatedestroy",
-        AuthorRetrieveUpdateDestroyAPIView.as_view(),
-        name="author-retrieveupdatedestroy",
-    ),
-    path(
-        "country/listcreate", CountryListCreateAPIView.as_view(), name="country-listcreate"
-    ),
-    path(
-        "country/retrieveupdatedestroy",
-        CountryRetrieveUpdateDestroyAPIView.as_view(),
-        name="country-retrieveupdatedestroy",
-    ),
-    path(
-        "region/listcreate", RegionListCreateAPIView.as_view(), name="region-listcreate"
-    ),
-    path(
-        "region/retrieveupdatedestroy",
-        RegionRetrieveUpdateDestroyAPIView.as_view(),
-        name="region-retrieveupdatedestroy",
-    ),
+    path("education/list", EducationListAPIView.as_view(), name="educations"),
+    path("education/create", EducationCreateAPIView.as_view(), name="education-create"),
+    path("education/delete/<int:pk>", EducationDeleteAPIView.as_view(), name="education-delete"),
+    path("education/update/<int:pk>", EducationUpdateAPIView.as_view(), name="education-update"),
+    path("education/<int:pk>", EducationDetailAPIView.as_view(), name="education-single"),
+    path("author/list", AuthorListAPIView.as_view(), name="authors"),
+    path("author/create", AuthorCreateAPIView.as_view(), name="author-create"),
+    path("author/delete/<int:pk>", AuthorDeleteAPIView.as_view(), name="author-delete"),
+    path("author/update/<int:pk>", AuthorUpdateAPIView.as_view(), name="author-update"),
+    path("author/<int:pk>", AuthorDetailAPIView.as_view(), name="author-single"),
 ]

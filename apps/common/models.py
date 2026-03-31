@@ -12,7 +12,7 @@ class BaseModel(models.Model):
 
 
 class Media(BaseModel):
-    file_url = models.URLField(_("file URL"), max_length=500)
+    file = models.FileField(_("File URL"), max_length=500, upload_to="media/")
 
     class Meta:
         verbose_name = _("media")
@@ -22,12 +22,23 @@ class Media(BaseModel):
         return self.file_url
 
 
-class Education(BaseModel):
+class Country(BaseModel):
     name = models.CharField(_("name"), max_length=100)
 
     class Meta:
-        verbose_name = _("education")
-        verbose_name_plural = _("educations")
+        verbose_name = _("country")
+        verbose_name_plural = _("countries")
+
+    def __str__(self):
+        return self.name
+
+
+class Region(BaseModel):
+    name = models.CharField(_("name"), max_length=100)
+
+    class Meta:
+        verbose_name = _("region")
+        verbose_name_plural = _("regions")
 
     def __str__(self):
         return self.name
