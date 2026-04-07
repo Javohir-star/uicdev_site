@@ -6,11 +6,25 @@ from rest_framework.generics import (
     RetrieveAPIView,
     RetrieveUpdateDestroyAPIView,
     UpdateAPIView,
+    GenericAPIView
 )
+from rest_framework.response import Response
 
 from apps.common.models import Country, Region
 from apps.common.serializers.country_region import CountrySerializer, RegionSerializer
+from apps.common.tasks import import_countries_and_regions
 
+
+class ImportDataAPIView(GenericAPIView):
+    def post(self, request, *args, **kwargs):
+        result = import_countries_and_regions.delay()
+        return Response(
+            {
+                "message": "Import task started",
+                "task_id": result.id,
+            }
+        )
+    
 
 class CountryListCreateAPIView(ListCreateAPIView):
     queryset = Country.objects.all().order_by("name")

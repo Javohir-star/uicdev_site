@@ -6,8 +6,10 @@ from .country_region import (
     RegionListAPIView,
     RegionRetriveAPIView,
     RegionUpdateAPIView,
+    ImportDataAPIView,
 )
 from .file_upload import FileUploadAPIView
+from .test_task import TestTaskAPIView
 
 __all__ = [
     "CountryListCreateAPIView",
@@ -18,4 +20,6 @@ __all__ = [
     "RegionRetriveAPIView",
     "RegionUpdateAPIView",
     "FileUploadAPIView",
+    "ImportDataAPIView",
+    "TestTaskAPIView",
 ]
