@@ -35,7 +35,7 @@ class Country(BaseModel):
 
 
 class Region(BaseModel):
-    country = models.ForeignKey(Country, on_delete=models.CASCADE, related_name="regions")
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True)
     name = models.CharField(_("name"), max_length=100)
 
     class Meta:
