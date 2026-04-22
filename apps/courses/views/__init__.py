@@ -1,39 +1,51 @@
-from .tag import (
-    TagCreateAPIView,
-    TagListAPIView,
-    TagRetrieveAPIView,
-    TagUpdateAPIView,
-    TagDeleteAPIView,
-)
 from .category import (
     CategoryCreateAPIView,
+    CategoryDeleteAPIView,
     CategoryListAPIView,
     CategoryRetrieveAPIView,
     CategoryUpdateAPIView,
-    CategoryDeleteAPIView,
 )
 from .course import (
-    CourseCreateAPIView,
     CourseListAPIView,
     CourseRetrieveAPIView,
-    CourseUpdateAPIView,
-    CourseDeleteAPIView,
+)
+from .tag import (
+    TagCreateAPIView,
+    TagDeleteAPIView,
+    TagListAPIView,
+    TagRetrieveAPIView,
+    TagUpdateAPIView,
 )
 
+
+from .enrollment import (
+    EnrollmentCreateAPIView,
+    EnrollmentDeleteAPIView,
+    EnrollmentListAPIView,
+    EnrollmentRetrieveAPIView,
+    EnrollmentUpdateAPIView,
+)
+
+
 __all__ = [
-    "TagCreateAPIView",
-    "TagListAPIView",
-    "TagRetrieveAPIView",
-    "TagUpdateAPIView",
-    "TagDeleteAPIView",
-    "CategoryCreateAPIView",
     "CategoryListAPIView",
-    "CategoryRetrieveAPIView",
+    "CategoryCreateAPIView",
     "CategoryUpdateAPIView",
+    "CategoryRetrieveAPIView",
     "CategoryDeleteAPIView",
-    "CourseCreateAPIView",
+
+    "TagListAPIView",
+    "TagCreateAPIView",
+    "TagUpdateAPIView",
+    "TagRetrieveAPIView",
+    "TagDeleteAPIView",
+
     "CourseListAPIView",
     "CourseRetrieveAPIView",
-    "CourseUpdateAPIView",
-    "CourseDeleteAPIView",
+
+    "EnrollmentCreateAPIView",
+    "EnrollmentDeleteAPIView",
+    "EnrollmentListAPIView",
+    "EnrollmentRetrieveAPIView",
+    "EnrollmentUpdateAPIView",
 ]

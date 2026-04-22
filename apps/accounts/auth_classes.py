@@ -13,8 +13,12 @@ class MyBasicAuth(BasicAuthentication):
         with optional request for context.
         """
         if userid != settings.ONEID_USERNAME:
-            raise exceptions.AuthenticationFailed("Authentication failed. Wrong username.")
+            raise exceptions.AuthenticationFailed(
+                "Authentication failed. Wrong username."
+            )
         if password != settings.ONEID_PASSWORD:
-            raise exceptions.AuthenticationFailed("Authentication failed. Wrong password.")
+            raise exceptions.AuthenticationFailed(
+                "Authentication failed. Wrong password."
+            )
 
         return (True, None)

@@ -47,7 +47,9 @@ def user_pre_save(sender, instance, raw, using, update_fields, **kwargs):
         try:
             old = User.objects.get(pk=instance.pk)
             if old.phone != instance.phone:
-                logger.info(f"[pre_save] Phone o'zgardi: {old.phone} -> {instance.phone}")
+                logger.info(
+                    f"[pre_save] Phone o'zgardi: {old.phone} -> {instance.phone}"
+                )
         except User.DoesNotExist:
             pass
 

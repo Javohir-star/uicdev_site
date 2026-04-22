@@ -13,7 +13,9 @@ def recalculate_lesson_ratings():
     updated_count = 0
 
     for lesson in lessons:
-        avg = LessonRate.objects.filter(lesson=lesson).aggregate(avg_rating=Avg("star_count"))["avg_rating"]
+        avg = LessonRate.objects.filter(lesson=lesson).aggregate(
+            avg_rating=Avg("star_count")
+        )["avg_rating"]
 
         new_rating = round(avg, 2) if avg else 0.0
 

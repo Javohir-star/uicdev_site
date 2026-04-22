@@ -5,31 +5,6 @@ from django.utils.translation import gettext_lazy as _
 from apps.common.models import BaseModel
 
 
-class Enrollment(BaseModel):
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name="enrollments",
-        verbose_name=_("user"),
-    )
-    course = models.ForeignKey(
-        "courses.Course",
-        on_delete=models.CASCADE,
-        related_name="enrollments",
-        verbose_name=_("course"),
-    )
-    started_at = models.DateTimeField(_("started at"), auto_now_add=True)
-    finished_at = models.DateTimeField(_("finished at"), null=True, blank=True)
-
-    class Meta:
-        verbose_name = _("enrollment")
-        verbose_name_plural = _("enrollments")
-        unique_together = ("user", "course")
-
-    def __str__(self):
-        return f"{self.user} - {self.course}"
-
-
 class LessonQuestion(BaseModel):
     lesson = models.ForeignKey(
         "courses.Lesson",

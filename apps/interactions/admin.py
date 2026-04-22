@@ -1,21 +1,12 @@
 from django.contrib import admin
 
 from apps.interactions.models import (
-    Enrollment,
     LessonAnswer,
     LessonQuestion,
     LessonRate,
     LessonResource,
     UserHomeworkAttempt,
 )
-
-
-@admin.register(Enrollment)
-class EnrollmentAdmin(admin.ModelAdmin):
-    list_display = ["user", "course", "started_at", "finished_at"]
-    list_filter = ["started_at"]
-    search_fields = ["user__phone", "course__name"]
-    raw_id_fields = ["user", "course"]
 
 
 @admin.register(LessonQuestion)

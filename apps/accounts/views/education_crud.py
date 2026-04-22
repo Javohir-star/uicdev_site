@@ -1,5 +1,11 @@
 from rest_framework.authentication import SessionAuthentication
-from rest_framework.generics import CreateAPIView, DestroyAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView
+from rest_framework.generics import (
+    CreateAPIView,
+    DestroyAPIView,
+    ListAPIView,
+    RetrieveAPIView,
+    UpdateAPIView,
+)
 from rest_framework.permissions import IsAuthenticated
 
 from apps.accounts.models import Education
@@ -11,6 +17,7 @@ class EducationListAPIView(ListAPIView):
     serializer_class = EducationSerializer
     permission_classes = [IsAuthenticated]
     authentication_classes = [SessionAuthentication]
+    lookup_field = "id"
 
 
 class EducationCreateAPIView(CreateAPIView):
@@ -20,18 +27,18 @@ class EducationCreateAPIView(CreateAPIView):
 
 
 class EducationUpdateAPIView(UpdateAPIView):
-    queryset = Education.objects.all()
+    queryset = Education.objects.all().order_by("id")
     serializer_class = EducationSerializer
     lookup_field = "id"
 
 
 class EducationDetailAPIView(RetrieveAPIView):
-    queryset = Education.objects.all()
+    queryset = Education.objects.all().order_by("id")
     serializer_class = EducationSerializer
     lookup_field = "id"
 
 
 class EducationDeleteAPIView(DestroyAPIView):
-    queryset = Education.objects.all()
+    queryset = Education.objects.all().order_by("id")
     serializer_class = EducationSerializer
     lookup_field = "id"

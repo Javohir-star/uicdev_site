@@ -10,7 +10,12 @@ from apps.common.models import BaseModel
 
 
 class User(AbstractBaseUser, PermissionsMixin, BaseModel):
-    phone = models.CharField(_("phone"), max_length=20, unique=True, validators=[RegexValidator(r"^\+?1?\d{9,15}$")])
+    phone = models.CharField(
+        _("phone"),
+        max_length=20,
+        unique=True,
+        validators=[RegexValidator(r"^\+?1?\d{9,15}$")],
+    )
     first_name = models.CharField(_("first name"), max_length=150, blank=True)
     last_name = models.CharField(_("last name"), max_length=150, blank=True)
     avatar = models.ForeignKey(
@@ -18,7 +23,7 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name="user_avatars",
+        related_name="user_avatar",
         verbose_name=_("avatar"),
     )
     bio = models.TextField(_("bio"), blank=True)
@@ -34,7 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name="users",
+        related_name="user_country",
         verbose_name=_("country"),
     )
     region = models.ForeignKey(
@@ -42,7 +47,7 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name="users",
+        related_name="user_region",
         verbose_name=_("region"),
     )
     is_staff = models.BooleanField(_("is staff"), default=False)
@@ -64,6 +69,24 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
     @property
     def full_name(self):
         return f"{self.first_name} {self.last_name}".strip()
+
+
+class Wallet(BaseModel):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="wallets",
+        verbose_name=_("user"),
+    )
+    balance = models.DecimalField(_("balance"), max_digits=10, decimal_places=2)
+    is_deleted = models.BooleanField(_("is deleted"), default=False)
+
+    class Meta:
+        verbose_name = _("wallet")
+        verbose_name_plural = _("wallets")
+
+    def __str__(self):
+        return f"{self.user} - {self.balance}"
 
 
 class Education(BaseModel):

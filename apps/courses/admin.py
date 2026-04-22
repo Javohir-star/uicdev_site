@@ -1,7 +1,7 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 
-from apps.courses.models import Category, Course, Lesson, Module, Tag
+from apps.courses.models import Category, Course, Lesson, Module, Tag, Enrollment
 
 
 class ModuleInline(admin.TabularInline):
@@ -30,7 +30,14 @@ class TagAdmin(admin.ModelAdmin):
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ["name", "author", "category", "is_active", "is_published", "reward_stars"]
+    list_display = [
+        "name",
+        "author",
+        "category",
+        "is_active",
+        "is_published",
+        "reward_stars",
+    ]
     list_filter = ["is_active", "is_published", "category"]
     search_fields = ["name", "author__first_name", "author__last_name"]
     raw_id_fields = ["author", "banner"]
@@ -47,7 +54,22 @@ class ModuleAdmin(admin.ModelAdmin):
 
 @admin.register(Lesson)
 class LessonAdmin(admin.ModelAdmin):
-    list_display = ["name", "module", "type", "lesson_order", "is_active", "current_rating"]
+    list_display = [
+        "name",
+        "module",
+        "type",
+        "lesson_order",
+        "is_active",
+        "current_rating",
+    ]
     list_filter = ["type", "is_active"]
     search_fields = ["name", "module__name"]
     raw_id_fields = ["video"]
+
+
+@admin.register(Enrollment)
+class EnrollmentAdmin(admin.ModelAdmin):
+    list_display = ["user", "course", "started_at", "finished_at"]
+    list_filter = ["started_at"]
+    search_fields = ["user__phone", "course__name"]
+    raw_id_fields = ["user", "course"]

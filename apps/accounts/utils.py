@@ -3,12 +3,19 @@ from django.conf import settings
 
 BASE_URL = "https://devsms.uz/api"
 
-headers = {"Authorization": f"Bearer {settings.DEVSMS_TOKEN}", "Content-Type": "application/json"}
+headers = {
+    "Authorization": f"Bearer {settings.DEVSMS_TOKEN}",
+    "Content-Type": "application/json",
+}
 
 
 # SMS Yuborish
 def send_sms(phone: str, message: str) -> dict:
-    response = requests.post(f"{BASE_URL}/send_sms.php", headers=headers, json={"phone": phone, "message": message})
+    response = requests.post(
+        f"{BASE_URL}/send_sms.php",
+        headers=headers,
+        json={"phone": phone, "message": message},
+    )
     return response.json()
 
 

@@ -6,7 +6,7 @@ from rest_framework.generics import (
     RetrieveAPIView,
     RetrieveUpdateDestroyAPIView,
     UpdateAPIView,
-    GenericAPIView
+    GenericAPIView,
 )
 from rest_framework.response import Response
 
@@ -24,7 +24,7 @@ class ImportDataAPIView(GenericAPIView):
                 "task_id": result.id,
             }
         )
-    
+
 
 class CountryListCreateAPIView(ListCreateAPIView):
     queryset = Country.objects.all().order_by("name")
